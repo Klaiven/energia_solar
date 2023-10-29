@@ -1,0 +1,14 @@
+.Logo{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.Logo img{
+    width: 200px;
+}
+
+.Logo p{
+    font-size: 2rem;
+    font-weight: bold;
+}
