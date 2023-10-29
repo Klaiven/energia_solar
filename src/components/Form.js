@@ -6,20 +6,38 @@ function Form(){
 
     function Enviar(e){
         e.preventDefault()
-        console.log(`Consumo: ${consumo} Kwh Valor: R$${valor}`)
-        e.target.reset();
 
         const resultado = document.getElementById('resultado');
 
-        const paragrafo = `
-            <p>Consumo: ${consumo} Kwh Valor: R$${valor}</p>        
-        `;
+        if(consumo !== undefined && valor !== undefined){
+            const paragrafo = `
+                <p>Seu investimento será: R$${investimento} 
+                <br/>
+                Seu investimento será pago em: ${final} meses</p>        
+            `;
+            resultado.innerHTML = paragrafo;
 
-        resultado.innerHTML = paragrafo;
+            e.target.reset();
+        }
     }
 
+
+
+    // Variáveis Recebidas
       const[consumo, setConsumo] = useState()
       const[valor, setValor] = useState()
+
+    // Calcula a quantidade de placas e arredonda
+      const quantidadePlaca = consumo/22.5;
+      const arredondado = Math.ceil(quantidadePlaca)
+    // Valor Placa 22.5 KhW
+      const valorPlaca = 290
+
+    // Valor Investimento
+      const investimento = arredondado*valorPlaca
+
+    // Quantidade de meses para quitar as placas solares
+      const final =  Math.ceil(investimento/valor)
 
     return(
         <form className={Styles.Formulario} onSubmit={Enviar}>
